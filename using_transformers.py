@@ -11,13 +11,12 @@ def generate_instruction(prompt):
         dtype=torch.float32
     )
     
-    # Ключевое изменение: Формируем КОРРЕКТНЫЙ промт
-    # Мы явно начинаем историю и даем команду, которую модель легко поймет.
+
     system_message = f"Вопрос: {prompt}\n\nПодробная инструкция:\n1."
     
     results = generator(
         system_message,  # Используем новый, правильный промт
-        max_length=400,  # Уменьшил длину, т.к. промт теперь короче
+        max_length=400, 
         temperature=1.0,
         do_sample=True,
         num_return_sequences=1,
@@ -60,7 +59,7 @@ def main():
     lines_count = count_numbered_lines(answer_ru)
 
     # Проверка метрики шага
-    while lines_count < 3: # Изменил на строго меньше 3
+    while lines_count < 3:
         print("Инструкция получилась слишком короткой. Генерирую ответ заново...")
         answer_ru = generate_instruction(question)
         lines_count = count_numbered_lines(answer_ru)
@@ -68,8 +67,7 @@ def main():
     
     print("="*50)
     print("ОТВЕТ:\n")
-    # Красиво выводим ответ, начиная с "1."
-    print("1." + answer_ru if not answer_ru.startswith('1') else answer_ru)
+    print(answer_ru)
     print("="*50)
     print(f"Найдено пронумерованных пунктов: {lines_count+1}")
     print("="*50)
