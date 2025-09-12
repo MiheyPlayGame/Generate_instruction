@@ -15,12 +15,11 @@
 
 ## Установка и запуск
 
-# ДЛЯ using_transformers.py
-```bash
+### ДЛЯ using_transformers.py
 pip install torch transformers
 python using_transformers.py
 
-# ДЛЯ using_transformers.py
+### ДЛЯ using_transformers.py
 
 ## Установка Ollama
 
