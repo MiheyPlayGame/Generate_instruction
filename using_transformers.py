@@ -17,7 +17,7 @@ def generate_instruction(prompt):
     
     results = generator(
         system_message,  # Используем новый, правильный промт
-        max_length=200,  # Уменьшил длину, т.к. промт теперь короче
+        max_length=400,  # Уменьшил длину, т.к. промт теперь короче
         temperature=1.0,
         do_sample=True,
         num_return_sequences=1,

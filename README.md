@@ -16,8 +16,8 @@
 ## Установка и запуск
 
 ### ДЛЯ using_transformers.py
-pip install torch transformers
-python using_transformers.py
+- pip install torch transformers
+- python using_transformers.py
 
 ### ДЛЯ using_transformers.py
 
@@ -29,8 +29,9 @@ python using_transformers.py
 
 ## MacOS
 ### Установка через Homebrew
-brew install ollama
-### Или скачайте вручную: Ollama macOS Installer https://ollama.com/download/mac
+- brew install ollama
+### Или скачайте вручную
+- Ollama macOS Installer https://ollama.com/download/mac
 
 ## Linux
 ### Установка через bash
