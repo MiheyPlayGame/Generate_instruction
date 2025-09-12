@@ -35,9 +35,13 @@
 
 ## Linux
 ### Установка через bash
-curl -fsSL https://ollama.ai/install.sh | sh
-### Или скачайте вручную: Ollama Linux Installer https://ollama.com/download/linux
+- curl -fsSL https://ollama.ai/install.sh | sh
+### Или скачайте вручную
+- Ollama Linux Installer https://ollama.com/download/linux
 
 
-## Загрузка модели
+## Финал
+### Запуск Ollama
+- ollama serve
+### Загрузка модели
 ollama pull llama2
