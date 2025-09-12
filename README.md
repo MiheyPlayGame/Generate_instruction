@@ -44,4 +44,4 @@
 ### Запуск Ollama
 - ollama serve
 ### Загрузка модели
-ollama pull llama2
+- ollama pull llama2
