@@ -2,7 +2,7 @@
 Task GenAI-2-39 for NSU "Project Introduction" course
 
 ## Task description
-Generate detailed step-by-step instructions from user questions using AI models.
+Generate detailed step-by-step instructions with substeps from user questions using AI models.
 
 ## Guideline (Original Task Requirements)
 1. Get the prompt
@@ -11,12 +11,11 @@ Generate detailed step-by-step instructions from user questions using AI models.
 4. Output.
 
 ## Features
-- **AI-Powered Generation**: Uses Hugging Face transformers for instruction generation
+- **AI-Powered Generation**: Uses Ollama for instruction generation
 - **Quality Validation**: Automatically validates instruction quality and regenerates if needed
 - **Structure Analysis**: Analyzes instruction structure with step and substep counting
 - **Interactive Interface**: User-friendly command-line interface for question input
 - **Error Handling**: Comprehensive validation and error handling
-- **Bilingual Support**: Supports both English and Russian instruction generation
 
 ## Functions
 
@@ -28,7 +27,7 @@ Generates a formatted prompt for instruction generation.
 - `add_substeps` (bool): Whether to include substeps in the instruction format (default: True)
 
 **Returns:**
-- `str`: Formatted prompt for instruction generation
+- `str`: Formatted prompt string ready for AI model processing
 
 **Raises:**
 - `ValueError`: If prompt is empty or invalid
@@ -47,18 +46,6 @@ Analyzes instruction structure and returns statistics about steps and substeps.
 - `ValueError`: If instruction is empty or invalid
 
 
-### `generate_instruction(prompt: str) -> str`
-Generates step-by-step instructions using AI models (from GenAI_1_39 module).
-
-**Parameters:**
-- `prompt` (str): Formatted prompt for instruction generation
-
-**Returns:**
-- `str`: Generated instruction text
-
-**Note:** This function is imported from the GenAI_1_39 module and supports both Ollama and Transformers backends.
-
-
 ### `main()`
 Demonstrates the instruction generation functionality with user interaction.
 
@@ -66,7 +53,6 @@ Demonstrates the instruction generation functionality with user interaction.
 - Interactive question input with validation
 - Quality control with automatic regeneration
 - Detailed statistics about generated instructions
-- Support for both English and Russian questions
 - Comprehensive error handling and user feedback
 
 
@@ -76,36 +62,42 @@ python generate_instruction.py
 ```
 
 ## Dependencies
-- `transformers`: For Hugging Face model integration
-- `torch`: For PyTorch backend support
+- `requests`: For HTTP requests to Ollama API
+- `sys`: For system path manipulation
+- `os`: For operating system interface
+- `ollama`: For local AI model support (external service)
 
 ## Installation
 ```bash
-pip install transformers torch
+# Install Python dependencies
+pip install requests
+
+# Install Ollama (choose your platform)
+# Windows: Download from https://ollama.com/download/windows
+# macOS: brew install ollama or download from https://ollama.com/download/mac
+# Linux: curl -fsSL https://ollama.ai/install.sh | sh
+
+# Start Ollama service
+ollama serve
+
+# Pull the model (in another terminal)
+ollama pull llama2
 ```
 
 ## Implementation Details
 The implementation provides a comprehensive instruction generation system:
+- Provides tips for better results (questions starting with "How", ending with "?", in English)
+- Converts user questions into configurable and structured prompts for AI models
+- Uses `ask_ollama` function from `using_ollama.py` module
+- Dynamically imports AI backend modules from GenAI-1-39 directory
+- Regenerates instructions that don't meet quality thresholds
+- Counts main steps and substeps in generated instructions
 
-### Main Module (`generate_instruction.py`)
-- **Prompt Formatting**: Converts user questions into structured prompts for AI models
-- **Quality Validation**: Ensures generated instructions meet minimum quality standards
-- **Statistics Analysis**: Provides detailed analysis of instruction structure
-- **Error Handling**: Comprehensive validation and user-friendly error messages
-
-### AI Backend Modules (`GenAI_1_39/`)
-- **Transformers Integration** (`using_transformers.py`): Hugging Face model support with Russian language optimization
-
-### Key Features:
-- **Automatic Quality Control**: Regenerates instructions that don't meet quality thresholds
-- **Structure Analysis**: Counts main steps and substeps in generated instructions
-- **Bilingual Support**: Optimized for both English and Russian instruction generation
-- **Flexible AI Backends**: Easy switching between local and cloud-based AI models
-- **Reproducible Results**: Configurable random seeds and temperature settings
 
 ## Materials
-- [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers/)
-- [PyTorch Documentation](https://pytorch.org/docs/)
-- [Sberbank AI Models](https://huggingface.co/sberbank-ai)
-- [Text Generation with Transformers](https://huggingface.co/docs/transformers/tasks/language_modeling)
 - [GenAI_1_39 module](https://github.com/FedosDan2/GenAI-1-39)
+- [Ollama Documentation](https://ollama.com)
+- [Requests Library](https://requests.readthedocs.io/)
+- [Python sys module](https://docs.python.org/3/library/sys.html)
+- [Python os module](https://docs.python.org/3/library/os.html)
+- [Ollama API Reference](https://github.com/ollama/ollama/blob/main/docs/api.md)
